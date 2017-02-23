@@ -1,0 +1,48 @@
+
+Coin-fly_1.png
+size: 610,190
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Coin-fly_1
+  rotate: false
+  xy: 2, 2
+  size: 150, 186
+  orig: 150, 186
+  offset: 0, 0
+  index: 0
+Coin-fly_1
+  rotate: false
+  xy: 154, 2
+  size: 150, 186
+  orig: 150, 186
+  offset: 0, 0
+  index: 1
+Coin-fly_1
+  rotate: false
+  xy: 154, 2
+  size: 150, 186
+  orig: 150, 186
+  offset: 0, 0
+  index: 4
+Coin-fly_1
+  rotate: false
+  xy: 306, 2
+  size: 150, 186
+  orig: 150, 186
+  offset: 0, 0
+  index: 2
+Coin-fly_1
+  rotate: false
+  xy: 306, 2
+  size: 150, 186
+  orig: 150, 186
+  offset: 0, 0
+  index: 3
+Coin-fly_1
+  rotate: false
+  xy: 458, 2
+  size: 150, 186
+  orig: 150, 186
+  offset: 0, 0
+  index: 5
