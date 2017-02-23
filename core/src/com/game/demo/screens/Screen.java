@@ -2,9 +2,9 @@ package com.game.demo.screens;
 
 import com.badlogic.gdx.InputProcessor;
 
-public class GameScreen extends AbstractGameScreen {
+public class Screen extends AbstractScreen {
 
-	public GameScreen() {
+	public Screen() {
 
 	}
 

@@ -7,7 +7,7 @@ import com.badlogic.gdx.Screen;
  * Created by Tomaž Ravljen, Drugi Vid d.o.o.
  */
 
-public abstract class AbstractGameScreen implements Screen {
+public abstract class AbstractScreen implements Screen {
 
     public abstract InputProcessor getInputProcessor();
 

@@ -3,7 +3,6 @@ package com.game.demo.desktop;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.game.demo.GameMain;
-import com.game.demo.screens.GameScreen;
 
 public class DesktopLauncher {
 	public static void main (String[] arg) {
