@@ -3,19 +3,30 @@ package com.game.demo.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.MathUtils;
+import com.game.demo.Coin;
+
+import java.util.ArrayList;
 
 public class GameScreen extends AbstractScreen {
 
 	private SpriteBatch batch;
-	private Animation animation;
-	private float animationTime = 0;
+	private ArrayList<Coin> coinList;
 
 	public GameScreen() {
-		animation = new Animation(23 / 1000f, new TextureAtlas("Coin-fly_1.atlas").getRegions());
 		batch = new SpriteBatch();
+		coinList = new ArrayList<Coin>();
+
+		createCoin();
+		createCoin();
+	}
+
+	private void createCoin() {
+		Coin coin = new Coin();
+		coin.position.x = MathUtils.random(0, Gdx.graphics.getWidth() - coin.dimension.x);
+		coin.position.y = MathUtils.random(0, Gdx.graphics.getHeight() - coin.dimension.y);
+		coinList.add(coin);
+		Gdx.app.debug("Coin", "position: " + coin.position.toString());
 	}
 
 	@Override
@@ -30,17 +41,23 @@ public class GameScreen extends AbstractScreen {
 
 	@Override
 	public void render(float deltaTime) {
-		Gdx.gl.glClearColor(1f, 1f, 1f, 1f);
+		Gdx.gl.glClearColor(0, 0, 0, 1f);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-		animationTime += deltaTime;
 		batch.begin();
-		batch.draw((TextureRegion)animation.getKeyFrame(animationTime, true), 0, 0);
+		renderCoins(deltaTime);
 		batch.end();
 	}
 
 	@Override
 	public void dispose() {
 
+	}
+
+	private void renderCoins(float deltaTime) {
+		for (Coin coin : coinList) {
+			coin.update(deltaTime);
+			coin.render(batch);
+		}
 	}
 }
