@@ -1,7 +1,7 @@
 package com.game.demo.screens;
 
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 /**
  * Created by Tomaž Ravljen, Drugi Vid d.o.o.
@@ -9,20 +9,13 @@ import com.badlogic.gdx.Screen;
 
 public abstract class AbstractScreen implements Screen {
 
-    public abstract InputProcessor getInputProcessor();
+    @Override
+    public void hide() {}
 
     @Override
-    public void hide() {
-
-    }
+    public void resume() {}
 
     @Override
-    public void resume() {
+    public void pause() {}
 
-    }
-
-    @Override
-    public void pause() {
-
-    }
 }

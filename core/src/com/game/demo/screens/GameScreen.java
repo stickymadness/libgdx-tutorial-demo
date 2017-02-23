@@ -1,10 +1,11 @@
 package com.game.demo.screens;
 
-import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL20;
 
-public class Screen extends AbstractScreen {
+public class GameScreen extends AbstractScreen {
 
-	public Screen() {
+	public GameScreen() {
 
 	}
 
@@ -20,16 +21,12 @@ public class Screen extends AbstractScreen {
 
 	@Override
 	public void render(float deltaTime) {
-
+		Gdx.gl.glClearColor(1f, 1f, 1f, 1f);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 	}
 
 	@Override
 	public void dispose() {
 
-	}
-
-	@Override
-	public InputProcessor getInputProcessor() {
-		return null;
 	}
 }
