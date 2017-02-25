@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 /**
@@ -45,14 +46,14 @@ public class Coin {
 
     public void update(float deltaTime) {
         animationTime += deltaTime;
-
+        movementDuration += deltaTime;
 
         updateVelocity();
         position.x += deltaTime * velocity.x;
         position.y += deltaTime * velocity.y;
 
-        if (maxDuration < animationTime) {
-            animationTime = 0;
+        if (maxDuration < movementDuration) {
+            movementDuration = 0;
             maxDuration = getMaxDuration();
             setRandomVelocity();
         }
@@ -80,5 +81,11 @@ public class Coin {
     public void render(SpriteBatch batch) {
         batch.draw((TextureRegion)anim.getKeyFrame(animationTime, true),
                 position.x, position.y, dimension.x, dimension.y);
+    }
+
+    public Rectangle getCollider() {
+        /*return new Rectangle(position.x - dimension.x / 2, position.y - dimension.y / 2,
+                dimension.x / 2, dimension.y / 2);*/
+        return new Rectangle(position.x, position.y, dimension.x, dimension.y);
     }
 }

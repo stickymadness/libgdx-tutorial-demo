@@ -10,15 +10,19 @@ import java.util.ArrayList;
 
 public class GameScreen extends AbstractScreen {
 
+	private final float SPAWN_TIME_MAX_DELAY = 1;
+	private final float SPAWN_TIME_MIN_DELAY = 0.5f;
+
 	private SpriteBatch batch;
 	private ArrayList<Coin> coinList;
+	private float spawnTimer = 0;
+	private float spawnTime = getRandomSpawnTime();
 
 	public GameScreen() {
 		batch = new SpriteBatch();
 		coinList = new ArrayList<Coin>();
 
-		createCoin();
-		createCoin();
+		Gdx.input.setInputProcessor(new GameInput(this));
 	}
 
 	private void createCoin() {
@@ -31,7 +35,8 @@ public class GameScreen extends AbstractScreen {
 
 	@Override
 	public void show() {
-
+		createCoin();
+		createCoin();
 	}
 
 	@Override
@@ -41,6 +46,13 @@ public class GameScreen extends AbstractScreen {
 
 	@Override
 	public void render(float deltaTime) {
+		spawnTimer += deltaTime;
+		if (spawnTime < spawnTimer) {
+			spawnTimer = 0;
+			spawnTime = getRandomSpawnTime();
+			createCoin();
+		}
+
 		Gdx.gl.glClearColor(0, 0, 0, 1f);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
@@ -59,5 +71,14 @@ public class GameScreen extends AbstractScreen {
 			coin.update(deltaTime);
 			coin.render(batch);
 		}
+	}
+
+
+	ArrayList<Coin> getCoins() {
+		return coinList;
+	}
+
+	private float getRandomSpawnTime() {
+		return MathUtils.random(SPAWN_TIME_MIN_DELAY, SPAWN_TIME_MAX_DELAY);
 	}
 }
