@@ -30,7 +30,7 @@ public class GameInput extends InputAdapter {
         }
 
         if (removeCoin != null) {
-            gameScreen.getCoins().remove(removeCoin);
+            gameScreen.removeCoin(removeCoin);
         }
         return super.touchUp(screenX, screenY, pointer, button);
     }

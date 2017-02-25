@@ -2,10 +2,13 @@ package com.game.demo.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.game.demo.Coin;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
 public class GameScreen extends AbstractScreen {
@@ -13,14 +16,20 @@ public class GameScreen extends AbstractScreen {
 	private final float SPAWN_TIME_MAX_DELAY = 1;
 	private final float SPAWN_TIME_MIN_DELAY = 0.5f;
 
+	private BitmapFont font;
 	private SpriteBatch batch;
 	private ArrayList<Coin> coinList;
 	private float spawnTimer = 0;
 	private float spawnTime = getRandomSpawnTime();
+	private int killCount = 0;
 
 	public GameScreen() {
 		batch = new SpriteBatch();
 		coinList = new ArrayList<Coin>();
+
+		font = new BitmapFont();
+		font.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+		font.getData().setScale(1.5f);
 
 		Gdx.input.setInputProcessor(new GameInput(this));
 	}
@@ -58,12 +67,28 @@ public class GameScreen extends AbstractScreen {
 
 		batch.begin();
 		renderCoins(deltaTime);
+		renderLabels();
 		batch.end();
 	}
 
 	@Override
 	public void dispose() {
 
+	}
+
+	public ArrayList<Coin> getCoins() {
+		return coinList;
+	}
+
+	private void renderLabels() {
+		font.draw(batch, "Kills: " + killCount, 25, 35);
+
+		if (coinList.size() >= 10) {
+			font.setColor(com.badlogic.gdx.graphics.Color.RED);
+		}
+		font.draw(batch, "Active: " + coinList.size(), Gdx.graphics.getWidth() - 150, 35);
+
+		font.setColor(com.badlogic.gdx.graphics.Color.WHITE);
 	}
 
 	private void renderCoins(float deltaTime) {
@@ -73,12 +98,12 @@ public class GameScreen extends AbstractScreen {
 		}
 	}
 
-
-	ArrayList<Coin> getCoins() {
-		return coinList;
-	}
-
 	private float getRandomSpawnTime() {
 		return MathUtils.random(SPAWN_TIME_MIN_DELAY, SPAWN_TIME_MAX_DELAY);
+	}
+
+	public void removeCoin(Coin removeCoin) {
+		coinList.remove(removeCoin);
+		killCount++;
 	}
 }

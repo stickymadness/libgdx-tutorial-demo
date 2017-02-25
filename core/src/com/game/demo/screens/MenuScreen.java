@@ -52,6 +52,7 @@ public class MenuScreen extends AbstractScreen {
     private void initPlayButton() {
         BitmapFont font = new BitmapFont();
         font.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+        font.getData().setScale(1.5f);
 
         TextButton.TextButtonStyle style = new TextButton.TextButtonStyle();
         style.font = font;
