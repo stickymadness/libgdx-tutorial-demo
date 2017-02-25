@@ -62,6 +62,10 @@ public class GameScreen extends AbstractScreen {
 			createCoin();
 		}
 
+		if (coinList.size() > 20) {
+			restartGame();
+		}
+
 		Gdx.gl.glClearColor(0, 0, 0, 1f);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
@@ -89,6 +93,13 @@ public class GameScreen extends AbstractScreen {
 		font.draw(batch, "Active: " + coinList.size(), Gdx.graphics.getWidth() - 150, 35);
 
 		font.setColor(com.badlogic.gdx.graphics.Color.WHITE);
+	}
+
+	private void restartGame() {
+		coinList.clear();
+		killCount = 0;
+		createCoin();
+		createCoin();
 	}
 
 	private void renderCoins(float deltaTime) {
