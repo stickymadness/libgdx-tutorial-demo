@@ -63,7 +63,7 @@ public class GameScreen extends AbstractScreen {
 		}
 
 		if (coinList.size() > 20) {
-			restartGame();
+			//restartGame();
 		}
 
 		Gdx.gl.glClearColor(0, 0, 0, 1f);

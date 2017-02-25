@@ -29,7 +29,10 @@ public class Coin {
     public Coin() {
         float height = Gdx.graphics.getHeight() * 0.2f;
         float width = height * (Gdx.graphics.getWidth() / Gdx.graphics.getHeight());
+        float scale = MathUtils.random(0.7f, 1.1f);
 
+        width *= scale;
+        height *= scale;
         animationTime = 0;
         movementDuration = 0;
         maxDuration = getMaxDuration();
