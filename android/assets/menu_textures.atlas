@@ -1,0 +1,61 @@
+
+menu_textures.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+background
+  rotate: false
+  xy: 1, 1
+  size: 1018, 470
+  orig: 1018, 470
+  offset: 0, 0
+  index: -1
+gameTitle
+  rotate: false
+  xy: 1021, 221
+  size: 494, 250
+  orig: 494, 250
+  offset: 0, 0
+  index: -1
+optionsButton
+  rotate: false
+  xy: 1021, 67
+  size: 154, 152
+  orig: 154, 152
+  offset: 0, 0
+  index: -1
+optionsButtonPressed
+  rotate: false
+  xy: 1517, 319
+  size: 153, 152
+  orig: 153, 152
+  offset: 0, 0
+  index: -1
+shopButton
+  rotate: false
+  xy: 1177, 67
+  size: 153, 152
+  orig: 153, 152
+  offset: 0, 0
+  index: -1
+shopButtonPressed
+  rotate: false
+  xy: 1672, 319
+  size: 153, 152
+  orig: 153, 152
+  offset: 0, 0
+  index: -1
+playButton
+  rotate: false
+  xy: 1332, 89
+  size: 131, 130
+  orig: 131, 130
+  offset: 0, 0
+  index: -1
+playButtonPressed
+  rotate: false
+  xy: 1827, 341
+  size: 131, 130
+  orig: 131, 130
+  offset: 0, 0
+  index: -1

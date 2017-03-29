@@ -2,13 +2,13 @@ package com.game.demo.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.game.demo.Coin;
 
-import java.awt.Color;
 import java.util.ArrayList;
 
 public class GameScreen extends AbstractScreen {
@@ -22,8 +22,13 @@ public class GameScreen extends AbstractScreen {
 	private float spawnTimer = 0;
 	private float spawnTime = getRandomSpawnTime();
 	private int killCount = 0;
+	private OrthographicCamera camera;
 
 	public GameScreen() {
+		camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		camera.position.set(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2, 0);
+		camera.update();
+
 		batch = new SpriteBatch();
 		coinList = new ArrayList<Coin>();
 
@@ -39,7 +44,6 @@ public class GameScreen extends AbstractScreen {
 		coin.position.x = MathUtils.random(0, Gdx.graphics.getWidth() - coin.dimension.x);
 		coin.position.y = MathUtils.random(0, Gdx.graphics.getHeight() - coin.dimension.y);
 		coinList.add(coin);
-		Gdx.app.debug("Coin", "position: " + coin.position.toString());
 	}
 
 	@Override
@@ -49,12 +53,9 @@ public class GameScreen extends AbstractScreen {
 	}
 
 	@Override
-	public void resize(int width, int height) {
-
-	}
-
-	@Override
 	public void render(float deltaTime) {
+		batch.setProjectionMatrix(camera.combined);
+
 		spawnTimer += deltaTime;
 		if (spawnTime < spawnTimer) {
 			spawnTimer = 0;
@@ -63,7 +64,7 @@ public class GameScreen extends AbstractScreen {
 		}
 
 		if (coinList.size() > 20) {
-			//restartGame();
+			restartGame();
 		}
 
 		Gdx.gl.glClearColor(0, 0, 0, 1f);

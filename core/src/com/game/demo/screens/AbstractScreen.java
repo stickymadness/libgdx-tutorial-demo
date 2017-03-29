@@ -17,4 +17,7 @@ public abstract class AbstractScreen implements Screen {
     @Override
     public void pause() {}
 
+    @Override
+    public void resize(int width, int height) {}
+
 }
