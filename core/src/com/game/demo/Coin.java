@@ -26,6 +26,8 @@ public class Coin {
     public Vector2 position;
     public Vector2 velocity;
 
+    public Rectangle bounds;
+
     public Coin() {
         float height = Gdx.graphics.getHeight() * 0.2f;
         float width = height * (Gdx.graphics.getWidth() / Gdx.graphics.getHeight());
@@ -42,6 +44,9 @@ public class Coin {
         velocity.x = velocity.y = Gdx.graphics.getHeight() * 0.25f;
         dimension = new Vector2(width, height);
         position = new Vector2();
+
+        bounds = new Rectangle();
+        bounds.set(position.x, position.y, dimension.x, dimension.y);
     }
 
     private float getMaxDuration() {
@@ -88,8 +93,7 @@ public class Coin {
     }
 
     public Rectangle getCollider() {
-        /*return new Rectangle(position.x - dimension.x / 2, position.y - dimension.y / 2,
-                dimension.x / 2, dimension.y / 2);*/
-        return new Rectangle(position.x, position.y, dimension.x, dimension.y);
+        bounds.setPosition(position.x, position.y);
+        return bounds;
     }
 }
