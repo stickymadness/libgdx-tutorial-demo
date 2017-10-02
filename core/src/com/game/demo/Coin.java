@@ -17,7 +17,7 @@ public class Coin {
     private static final float MAX_DURATION = 1f;
 
     private float animationTime;
-    private Animation anim;
+    private Animation<TextureRegion> anim;
 
     private float movementDuration;
     private float maxDuration;
@@ -26,18 +26,27 @@ public class Coin {
     public Vector2 position;
     public Vector2 velocity;
 
+    public Rectangle bounds;
+
     public Coin() {
         float height = Gdx.graphics.getHeight() * 0.2f;
         float width = height * (Gdx.graphics.getWidth() / Gdx.graphics.getHeight());
+        float scale = MathUtils.random(0.8f, 1.1f);
 
+        width *= scale;
+        height *= scale;
         animationTime = 0;
         movementDuration = 0;
         maxDuration = getMaxDuration();
-        anim = new Animation(23 / 1000f, new TextureAtlas("Coin-fly_1.atlas").getRegions());
+
+        anim = new Animation<TextureRegion>(23 / 1000f, new TextureAtlas("Coin-fly_1.atlas").getRegions());
         velocity = new Vector2();
         velocity.x = velocity.y = Gdx.graphics.getHeight() * 0.25f;
         dimension = new Vector2(width, height);
         position = new Vector2();
+
+        bounds = new Rectangle();
+        bounds.set(position.x, position.y, dimension.x, dimension.y);
     }
 
     private float getMaxDuration() {
@@ -79,13 +88,12 @@ public class Coin {
     }
 
     public void render(SpriteBatch batch) {
-        batch.draw((TextureRegion)anim.getKeyFrame(animationTime, true),
+        batch.draw(anim.getKeyFrame(animationTime, true),
                 position.x, position.y, dimension.x, dimension.y);
     }
 
     public Rectangle getCollider() {
-        /*return new Rectangle(position.x - dimension.x / 2, position.y - dimension.y / 2,
-                dimension.x / 2, dimension.y / 2);*/
-        return new Rectangle(position.x, position.y, dimension.x, dimension.y);
+        bounds.setPosition(position.x, position.y);
+        return bounds;
     }
 }

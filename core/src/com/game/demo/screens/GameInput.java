@@ -26,17 +26,15 @@ public class GameInput extends InputAdapter {
             if (isClicked(coin, screenX, screenY)) {
                 removeCoin = coin;
             }
-            Gdx.app.debug("GameInput", "isClicked: " + isClicked(coin, screenX, screenY));
         }
 
         if (removeCoin != null) {
-            gameScreen.getCoins().remove(removeCoin);
+            gameScreen.removeCoin(removeCoin);
         }
-        return super.touchUp(screenX, screenY, pointer, button);
+        return true;
     }
 
     private boolean isClicked(Coin coin, float x, float y) {
-
         Rectangle coinCollider = coin.getCollider();
         Rectangle click = new Rectangle(x - 1, y - 1, 2, 2);
 
