@@ -21,10 +21,10 @@ public class GameMain implements ApplicationListener {
     @Override
     public void create() {
         Gdx.app.setLogLevel(Application.LOG_DEBUG);
-        setScreen(new MenuScreen());
+        setScreen(new MenuScreen(this));
     }
 
-    private void setScreen(AbstractScreen screen) {
+    public void setScreen(AbstractScreen screen) {
         int w = Gdx.graphics.getWidth();
         int h = Gdx.graphics.getHeight();
 
