@@ -44,7 +44,9 @@ public class MenuScreen extends AbstractScreen {
 
     @Override
     public void dispose() {
-
+        if (stage != null) {
+            stage.dispose();
+        }
     }
 
     private void initPlayButton() {
